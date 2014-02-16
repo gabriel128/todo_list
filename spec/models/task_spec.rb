@@ -22,6 +22,10 @@ describe Task do
   end
 
   context 'invalid task' do
+    it 'can not have 0 chars in description' do
+      expect(build(:task, description: '')).to be_invalid
+    end
+
     it 'has not to have more than 255 chars' do
       expect(build(:invalid_task)).to be_invalid
     end

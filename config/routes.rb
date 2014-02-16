@@ -1,8 +1,13 @@
 ProjectGabriel::Application.routes.draw do
+
+  root 'todo_list#index', as: 'todo_list', via: :all
+
+  resource :tasks, only: [:new, :create, :edit, :update,:destroy]
   resources :users
 
-  get "index/:id" => 'todo_list#index'
-  #get "todo_list/add_task"
+  post "todo_list/add_task", to: 'todo_list#add_task'
+
+  #get "todo_list/index/:id" => 'todo_list#index'
   #get "todo_list/destroy"
   #get "todo_list/edit"
   # The priority is based upon order of creation: first created -> highest priority.
