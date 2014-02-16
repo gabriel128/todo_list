@@ -32,7 +32,7 @@ describe 'Todo List' do
       todo_list.get_tasks_orderer_by(:priority).each do |task|
         priority_list << task.priority
       end
-      expect(priority_list).to eq [1,2,6]
+      expect(priority_list).to match_array [1,2,6]
     end
 
     it 'can get task sort by due date' do
