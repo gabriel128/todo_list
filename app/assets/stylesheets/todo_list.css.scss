@@ -1,0 +1,49 @@
+// Place all the styles related to the todo_list controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#todoListContainer {
+  margin-left: 32px;
+}
+
+#todoListTable {
+//  width: 540em;
+  text-align: center;
+  th {
+    text-align: center;
+  }
+  tr {
+    margin-top: 5px;
+  }
+}
+
+.buttonAdd {
+  margin-top: 40px;
+  margin-left: 40%;
+}
+
+.actionButton {
+  float: left;
+  margin-left: 4px;
+}
+
+.doneColumn {
+  width: 2em;
+}
+
+.descriptionColumn {
+  width: 400em;
+  word-break: break-all;
+}
+
+.priorityColumn {
+  width: 2em;
+}
+
+.dueDateColumn {
+  width: 38em;
+}
+
+.actionColumn {
+  width: 80em;
+}

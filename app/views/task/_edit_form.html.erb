@@ -1,0 +1,4 @@
+<h3>Task </h3>
+<%= form_for @task, url: task_path, method: :patch,remote: true do |f| %>
+    <%= render 'task/form_inputs' , f: f %>
+<% end %>

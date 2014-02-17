@@ -1,4 +1,19 @@
 ProjectGabriel::Application.routes.draw do
+
+  root 'todo_list#index', as: 'todo_list', via: :all
+
+  resources :task, except: [:show] do |res|
+    patch 'update_done', on: :member
+  end
+  resources :users
+
+
+  get "todo_list/add_task/:id", to: 'todo_list#add_task', as: 'add_task'
+  get "todo_list/order_by/:property", to: 'todo_list#order_by', as: 'order_by'
+
+  #get "todo_list/index/:id" => 'todo_list#index'
+  #get "todo_list/destroy"
+  #get "todo_list/edit"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -19,7 +34,7 @@ ProjectGabriel::Application.routes.draw do
   #     member do
   #       get 'short'
   #       post 'toggle'
-  #     end
+  #     end                                                                                              asdfasd
   #
   #     collection do
   #       get 'sold'

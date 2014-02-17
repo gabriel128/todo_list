@@ -1,0 +1,17 @@
+<%= render 'shared/error_notification' %>
+
+<div>
+  <%= f.label :description %><br>
+  <%= f.text_area :description, rows: 3, cols: 40, maxlength: 255 %>
+</div>
+<div>
+  <%= f.label :priority %><br>
+  <%= f.select :priority, options_for_select((1..10)) %>
+</div>
+<div>
+  <%= f.label :due_date %><br>
+  <%= f.date_select :due_date, selected: 1.day.from_now %>
+</div>
+<div>
+  <%= f.submit 'Add', class: 'btn btn-success marginTop20' %>
+</div>

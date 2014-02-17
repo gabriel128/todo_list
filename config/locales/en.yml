@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+     models:
+      task:
+        attributes:
+          due_date:
+            on_or_after: 'Due Date has to be in the future'

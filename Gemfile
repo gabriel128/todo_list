@@ -13,6 +13,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'validates_timeliness', '~> 3.0'
+gem 'bootstrap-sass', '~> 3.1.1'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -30,6 +32,7 @@ group :test do
   gem "database_cleaner", "~> 1.0.1"
   gem "launchy", "~> 2.3.0"
   gem "selenium-webdriver", "~> 2.39.0"
+
 end
 
 # Use ActiveModel has_secure_password
