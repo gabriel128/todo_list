@@ -24,20 +24,33 @@
 }
 
 #title {
-  margin-left: 36%;
+  margin-left: 44%;
   position: absolute;
 }
 
 #notice {
-  color: #000 !important;
-  border: 2px solid red;
-
-  padding: 1em;
-  margin-bottom: 2em;
-  background-color: #f0f0f0;
+  background-color: #F0F0F0;
+  border: 2px solid #FF0000;
+  color: #000000 !important;
   font: bold smaller sans-serif;
+  margin: auto auto 32px;
+  padding: 1em;
+  width: 400px;
 }
 
 .marginTop20 {
   margin-top: 20px;
+}
+
+.notice {
+  margin: auto auto 40px;
+  width: 400px;
+}
+
+.navigationBar {
+  width: 100%;
+}
+
+.navTitle {
+  margin: auto auto auto 46%;
 }

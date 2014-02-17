@@ -1,11 +1,11 @@
 <% if notice %>
-    <p id="notice"><%= notice %></p>
+    <p id="tableNotice" class="alert alert-success notice"><%= notice %></p>
 <% end %>
 <script type="text/javascript">
     $(function() {
         setTimeout(function () {
-            $('#notice').hide();
-        }, 3000);
+            $('#tableNotice').hide();
+        }, 4000);
     });
 </script>
 

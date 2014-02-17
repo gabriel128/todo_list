@@ -2,7 +2,7 @@ ProjectGabriel::Application.routes.draw do
 
   root 'todo_list#index', as: 'todo_list', via: :all
 
-  resources :task, except: [:show] do |res|
+  resources :task, except: [:show] do
     patch 'update_done', on: :member
   end
   resources :users
@@ -10,6 +10,12 @@ ProjectGabriel::Application.routes.draw do
 
   get "todo_list/add_task/:id", to: 'todo_list#add_task', as: 'add_task'
   get "todo_list/order_by/:property", to: 'todo_list#order_by', as: 'order_by'
+
+  controller :session do
+    get 'login', to: :new
+    post 'login', to: :create
+    delete 'logout', to: :destroy
+  end
 
   #get "todo_list/index/:id" => 'todo_list#index'
   #get "todo_list/destroy"

@@ -1,0 +1,21 @@
+<% @title="Please Login" %>
+<div class="loginForm">
+  <% if flash[:notice] %>
+      <p class="alert alert-success notice"><%= flash[:notice] %></p>
+  <% end %>
+  <%= form_tag do %>
+      <fieldset>
+        <div>
+          <%= label_tag :name, 'Name:' %>
+          <%= text_field_tag :name, params[:name] %>
+        </div>
+        <div class="passwordDiv">
+          <%= label_tag :password, 'Password:' %>
+          <%= password_field_tag :password, params[:password] %>
+        </div>
+        <div>
+          <%= submit_tag "Login", class: 'btn btn-success marginTop20' %>
+        </div>
+      </fieldset>
+  <% end %>
+</div>
