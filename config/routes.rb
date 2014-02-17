@@ -2,10 +2,12 @@ ProjectGabriel::Application.routes.draw do
 
   root 'todo_list#index', as: 'todo_list', via: :all
 
-  resource :tasks, only: [:new, :create, :edit, :update,:destroy]
+  resources :task, only: [:new, :create, :edit, :update,:destroy]
   resources :users
 
-  post "todo_list/add_task", to: 'todo_list#add_task'
+
+  get "todo_list/add_task/:id", to: 'todo_list#add_task', as: 'add_task'
+  get "todo_list/order_by/:property", to: 'todo_list#order_by', as: 'order_by'
 
   #get "todo_list/index/:id" => 'todo_list#index'
   #get "todo_list/destroy"
@@ -30,7 +32,7 @@ ProjectGabriel::Application.routes.draw do
   #     member do
   #       get 'short'
   #       post 'toggle'
-  #     end
+  #     end                                                                                              asdfasd
   #
   #     collection do
   #       get 'sold'

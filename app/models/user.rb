@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
+  has_one :todo_list
+
   has_secure_password
   after_destroy :ensure_at_least_one_user
+
+  validates :name, presence: true, uniqueness: true
 
   private
 

@@ -2,31 +2,33 @@ require 'spec_helper'
 
 describe TodoListController do
 
+  before :each do
+    user = create(:user)
+    session[:user_id] = user.id
+    @todo_list = user.todo_list
+  end
+
   describe "GET #index " do
     it "show all tasks of a user specific todo list" do
-      todo_list = create(:todo_list_with_tasks)
-      get 'index', id: todo_list
-      expect(assigns(:todo_list)).to eq todo_list
+      get 'index'
+      expect(assigns(:todo_list)).to eq @todo_list
     end
 
     it "render the :show template" do
-      todo_list = create(:todo_list_with_tasks)
-      get 'index', id: todo_list
+      get 'index', id: @todo_list
       expect(response).to render_template :index
     end
   end
 
   describe "Post #add_task'" do
     it "add one more task" do
-      todo_list = create(:todo_list_with_tasks)
       expect do
-        post 'add_task', task: attributes_for(:task), id: todo_list.id
-      end.to change(todo_list.tasks, :count).by(1)
+        post 'add_task', id: create(:task)
+      end.to change(@todo_list.tasks, :count).by(1)
     end
 
     it "redirect to #index" do
-      todo_list = create(:todo_list_with_tasks)
-      post 'add_task', task: attributes_for(:task), id: todo_list.id
+      post 'add_task', id: create(:task)
       expect(response).to redirect_to todo_list_url
     end
   end

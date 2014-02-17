@@ -1,13 +1,13 @@
 class TodoListController < ApplicationController
+  before_action :get_todo_list
 
   def index
-    @todo_list = TodoList.find(params[:id])
+
   end
 
   def add_task
-    @todo_list = TodoList.find(params[:id])
-    @todo_list.tasks << Task.create(task_params)
-    redirect_to todo_list_url @todo_list
+    @todo_list.tasks << Task.find(params[:id])
+    redirect_to todo_list_url
   end
 
   def destroy
@@ -16,10 +16,26 @@ class TodoListController < ApplicationController
   def edit
   end
 
+  def order_by
+    @todo_list.tasks.reorder('priority')
+    render 'todo_list/index'
+  end
+
   private
 
-  def task_params
-    params.require(:task).permit(:description, :done, :due_date, :priority)
+  def get_todo_list
+    create_todo_list_if_none
+    set_session_todo_list_id
+    @todo_list = TodoList.find(session[:todo_list_id])
+  end
+
+  def set_session_todo_list_id
+    session[:todo_list_id] ||= User.find(session[:user_id]).todo_list.id
+  end
+
+  def create_todo_list_if_none
+    @user = User.find(session[:user_id])
+    @user.todo_list = TodoList.create unless @user.todo_list
   end
 
 

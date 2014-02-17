@@ -1,0 +1,35 @@
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+<script type="text/javascript">
+    $(function() {
+        setTimeout(function () {
+            $('#notice').hide();
+        }, 3000);
+    });
+</script>
+
+<table id="todoListTable" class="table">
+  <thead>
+      <th class="doneColumn">Completed</th>
+      <th class="descriptionColumn">Description</th>
+      <th class="priorityColumn"><%= link_to 'Priority', order_by_path(:priority), remote: true  %></th>
+      <th class="dueDateColumn"><%= link_to 'Due Date', order_by_path(:due_date), remote: true  %></th>
+      <th class="actionColumn">Action</th>
+  </thead>
+  <tbody>
+  <% @todo_list.tasks.each do |task| %>
+      <tr>
+        <td class="doneColumn"> <%= check_box_tag name: 'done', checked: task.done? %> </td>
+        <td class="descriptionColumn"> <%= task.description %> </td>
+        <td class="priorityColumn"> <%= task.priority %> </td>
+        <td class="dueDateColumn"> <%= task.due_date %> </td>
+        <td class="actionColumn">
+          <%= button_to 'Edit', edit_task_path(task), method: :get, class: 'btn btn-warning actionButton', remote: true %>
+          <%= button_to 'Remove', task_path(task), method: :delete, class: 'btn btn-danger actionButton', remote: true %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+

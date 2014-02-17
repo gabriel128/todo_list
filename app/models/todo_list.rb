@@ -1,5 +1,6 @@
 class TodoList < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
+  belongs_to :user
 
   def empty_tasks
     tasks.destroy_all

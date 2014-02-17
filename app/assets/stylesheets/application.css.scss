@@ -11,3 +11,33 @@
  *= require_self
  *= require_tree .
  */
+
+@import "bootstrap";
+
+
+#banner {
+  background: rgba(148, 149, 149, 0.88);
+  padding: 10px;
+  border-bottom: 2px solid;
+  font: small-caps 40px/40px "Times New Roman", serif;
+  text-align: center;
+}
+
+#title {
+  margin-left: 36%;
+  position: absolute;
+}
+
+#notice {
+  color: #000 !important;
+  border: 2px solid red;
+
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+
+.marginTop20 {
+  margin-top: 20px;
+}
