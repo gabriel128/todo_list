@@ -17,6 +17,8 @@ ProjectGabriel::Application.routes.draw do
     delete 'logout', to: :destroy
   end
 
+  post 'todo_rest/authorize_user/.:format', to: 'todo_rest#authorize_user'
+
   #get "todo_list/index/:id" => 'todo_list#index'
   #get "todo_list/destroy"
   #get "todo_list/edit"
