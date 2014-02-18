@@ -1,4 +1,5 @@
 class TaskController < ApplicationController
+  before_action :set_task, only: [:edit, :update, :destroy, :update_done]
 
   def new
     @task = Task.new
@@ -10,42 +11,45 @@ class TaskController < ApplicationController
       if @task.save
         format.html { redirect_to add_task_url @task}
       else
-        flash.now[:errors] =  @task.errors
-        format.js { render 'task/new'}
-        format.html { redirect_to action: :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        render_wrong_formats format
       end
     end
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to todo_list_url}
       else
-        flash.now[:errors] =  @task.errors
-        format.js { render 'task/new'}
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        render_wrong_formats format
       end
     end
   end
 
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
-    flash[:notice] =  'Task Removed'
-    redirect_to todo_list_url
+    redirect_to todo_list_url, notice: 'Task Removed'
   end
 
   def update_done
-    @task = Task.find(params[:id])
     @task.update_attribute(:done, params[:done])
     render nothing: true
+  end
+
+  private
+
+  def render_wrong_formats format
+    flash.now[:errors] =  @task.errors
+    format.js { render 'task/new'}
+    format.html { redirect_to action: :new }
+    format.json { render json: @task.errors, status: :unprocessable_entity }
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 
   private

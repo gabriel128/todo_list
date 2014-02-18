@@ -5,8 +5,8 @@ ProjectGabriel::Application.routes.draw do
   resources :task, except: [:show] do
     patch 'update_done', on: :member
   end
-  resources :users
 
+  resources :users
 
   get "todo_list/add_task/:id", to: 'todo_list#add_task', as: 'add_task'
   get "todo_list/order_by/:property", to: 'todo_list#order_by', as: 'order_by'

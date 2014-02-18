@@ -7,18 +7,19 @@
     </div>
   <% end %>
 
-  <div class="field marginTop20">
+  <div class="loginDiv">
     <%= f.label :name, 'Name:' %>
     <%= f.text_field :name %>
   </div>
-  <div class="field passwordDiv">
+  <div class="loginDiv">
     <%= f.label :password, 'Password:' %>
     <%= f.password_field :password %>
   </div>
-  <div class="field passwordConfirmationDiv">
+  <div class="loginDiv">
     <%= f.label :password_confirmation, 'Password Confirmation:' %>
     <%= f.password_field :password_confirmation%>
   </div>
+  <br>
   <div class="actions">
     <%= f.submit class: 'btn btn-success marginTop20' %>
   </div>

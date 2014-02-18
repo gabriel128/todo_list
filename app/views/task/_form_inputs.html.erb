@@ -10,7 +10,7 @@
 </div>
 <div>
   <%= f.label :due_date %><br>
-  <%= f.date_select :due_date, selected: 1.day.from_now %>
+  <%= f.date_select :due_date, selected: 1.day.from_now, order: [:month, :day, :year] %>
 </div>
 <div>
   <%= f.submit 'Save', class: 'btn btn-success marginTop20' %>

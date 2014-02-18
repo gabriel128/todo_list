@@ -4,13 +4,13 @@
 
 .loginForm {
   text-align: center;
-  margin-top: 50px;
+  margin: 60px auto auto;
+  width: 500px;
 }
 
-.passwordDiv {
-  padding-right: 26px;
+.loginDiv {
+  float: right;
+  margin-bottom: 6px;
+  padding-right: 123px
 }
 
-.passwordConfirmationDiv {
-  padding-right: 111px;
-}

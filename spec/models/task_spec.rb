@@ -3,13 +3,25 @@ require 'spec_helper'
 describe Task do
 
   context 'valid task' do
-    it { build(:task).should be_valid }
-    it { build(:task, done: true).done?.should be_true }
+    it 'has to have less than 255 chars' do
+      expect(build(:task)).to be_valid
+    end
+
+    it 'the priority has to be between 1 and 10' do
+      expect(build(:task)).to be_valid
+    end
+
+    it 'Due date has to be in the future' do
+      expect(build(:task)).to be_valid
+    end
+
+    it 'has to be done when it is' do
+      a_task = build(:task, done: true)
+      expect(a_task.done?).to be_true
+    end
   end
 
   context 'invalid task' do
-    it { build(:task, description: nil).should be_invalid }
-
     it 'has not to have more than 255 chars' do
       expect(build(:invalid_task)).to be_invalid
     end
