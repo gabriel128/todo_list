@@ -44,4 +44,6 @@ RSpec.configure do |config|
   RSpec.configure do |conf|
     conf.tty = true
   end
+
+  config.include LoginMacros
 end

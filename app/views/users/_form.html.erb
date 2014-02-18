@@ -8,16 +8,16 @@
   <% end %>
 
   <div class="field marginTop20">
-    <%= label_tag :name, 'Name:' %>
-    <%= text_field_tag :name, params[:name] %>
+    <%= f.label :name, 'Name:' %>
+    <%= f.text_field :name %>
   </div>
   <div class="field passwordDiv">
-    <%= label_tag :password, 'Password:' %>
-    <%= password_field_tag :password %>
+    <%= f.label :password, 'Password:' %>
+    <%= f.password_field :password %>
   </div>
   <div class="field passwordConfirmationDiv">
-    <%= label_tag :password_confirmation, 'Password Confirmation:' %>
-    <%= password_field_tag :password_confirmation%>
+    <%= f.label :password_confirmation, 'Password Confirmation:' %>
+    <%= f.password_field :password_confirmation%>
   </div>
   <div class="actions">
     <%= f.submit class: 'btn btn-success marginTop20' %>

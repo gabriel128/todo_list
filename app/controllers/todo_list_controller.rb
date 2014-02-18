@@ -11,12 +11,6 @@ class TodoListController < ApplicationController
     redirect_to todo_list_url
   end
 
-  def destroy
-  end
-
-  def edit
-  end
-
   def order_by
     @tasks = @todo_list.get_tasks_orderer_by(params[:property])
     render 'todo_list/index'

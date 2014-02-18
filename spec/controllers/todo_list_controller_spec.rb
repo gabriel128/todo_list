@@ -2,50 +2,40 @@ require 'spec_helper'
 
 describe TodoListController do
 
-  before :each do
-    user = create(:user)
-    session[:user_id] = user.id
-    @todo_list = user.todo_list
-  end
+  before(:each) { set_user_session}
+  let (:todo_list) { @user.todo_list }
 
-  describe "GET #index " do
-    it "show all tasks of a user specific todo list" do
-      get 'index'
-      expect(assigns(:todo_list)).to eq @todo_list
+  describe "GET #index" do
+    context 'http request' do
+      before(:each) { get :index, id: todo_list }
+      it { response.should render_template :index }
     end
 
-    it "render the :show template" do
-      get 'index', id: @todo_list
-      expect(response).to render_template :index
+    context 'ajax request' do
+      before(:each) { xhr :get, :index }
+      it { assigns(:tasks).should eq todo_list.tasks }
+      it { response.should render_template :index }
     end
   end
 
   describe "Post #add_task'" do
-    it "add one more task" do
-      expect do
-        post 'add_task', id: create(:task)
-      end.to change(@todo_list.tasks, :count).by(1)
-    end
-
-    it "redirect to #index" do
-      post 'add_task', id: create(:task)
-      expect(response).to redirect_to todo_list_url
-    end
+    let(:add_task){post :add_task, id: create(:task)}
+    it { expect { add_task }.to change(todo_list.tasks, :count).by(1)}
+    it { add_task; response.should redirect_to todo_list_url }
   end
 
-  #describe "POST #destroy" do
-  #  it "returns http success" do
-  #    get 'destroy'
-  #    response.should be_success
-  #  end
-  #end
+  describe "GET #order_by'" do
+    let(:priority_order) { xhr :get, :order_by, property: :priority }
+    let(:due_date_order) { xhr :get, :order_by, property: :due_date }
+    before :each do
+      todo_list.tasks.destroy_all
+      todo_list.tasks << Task.new(description: "secondTask", priority: 2, due_date: 2.days.from_now)
+      todo_list.tasks << Task.new(description: "firstTask", priority: 1, due_date: 1.days.from_now)
+    end
 
-  #
-  #describe "GET 'edit'" do
-  #  it "returns http success" do
-  #    get 'edit'
-  #    response.should be_success
-  #  end
-  #end
+    it { priority_order; assigns(:tasks).first.description.should eql 'firstTask'}
+    it { due_date_order; assigns(:tasks).first.description.should eql 'firstTask'}
+    it { priority_order; response.should render_template 'todo_list/index'}
+  end
 
 end
