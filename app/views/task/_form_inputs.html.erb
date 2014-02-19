@@ -1,4 +1,4 @@
-<%= render 'shared/error_notification' %>
+<%= render 'shared/error_notification', addClass: 'marginLeft0' %>
 
 <div>
   <%= label_tag :description %><br>
@@ -6,12 +6,15 @@
 </div>
 <div>
   <%= f.label :priority %><br>
-  <%= f.select :priority, options_for_select((1..10)) %>
+  <%= f.select :priority, options_for_select(1..10, @task.priority) %>
+
 </div>
 <div>
   <%= f.label :due_date %><br>
-  <%= f.date_select :due_date, selected: 1.day.from_now, order: [:month, :day, :year] %>
+  <%= f.date_select :due_date, order: [:month, :day, :year] %>
 </div>
 <div>
-  <%= f.submit 'Save', class: 'btn btn-success marginTop20' %>
+  <%= f.submit 'Save', class: 'btn btn-success floatLeft marginTop20 saveButton' %>
+  <%= link_to "<button type='button' class='btn btn-warning floatLeft marginTop20'>Cancel</button>".html_safe,
+              todo_list_url, remote: true %>
 </div>

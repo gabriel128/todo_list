@@ -1,13 +1,6 @@
 <% if notice %>
     <p id="tableNotice" class="alert alert-success notice"><%= notice %></p>
 <% end %>
-<script type="text/javascript">
-    $(function() {
-        setTimeout(function () {
-            $('#tableNotice').hide();
-        }, 4000);
-    });
-</script>
 
 <table id="todoListTable" class="table">
   <thead>
@@ -35,7 +28,13 @@
       </tr>
   <% end %>
   </tbody>
-  <script>
+  <script type="text/javascript">
+      $(function() {
+          setTimeout(function () {
+              $('#tableNotice').hide();
+          }, 7000);
+      });
+
       $(":checkbox").click( function(data) {
           $.ajax({
               type: "PATCH",
