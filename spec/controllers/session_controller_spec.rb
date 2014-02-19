@@ -23,4 +23,12 @@ describe SessionController do
     it { session[:user_id].should be nil }
     it { response.should redirect_to login_url }
   end
+
+  describe 'user authorization by json' do
+    it '#authorize should return a session_id' do
+      json = {format: 'json', user: {name: user.name, password: user.password}}
+      post :authorize_user, json
+      JSON.parse(response.body)["id"].should eq user.id
+    end
+  end
 end

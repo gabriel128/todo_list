@@ -19,4 +19,16 @@ class SessionController < ApplicationController
     session[:todo_list_id] = nil
     redirect_to login_url, notice: "Logged out"
   end
+
+  def authorize_user
+    @user = User.find_by(name: params[:user][:name])
+    respond_to do |format|
+      if @user
+        session[:user_id] = @user.id
+        format.json { render json: {id: @user.id}}
+      else
+        format.json { render json: { error_message: "Not valid user or password" }}
+      end
+    end
+  end
 end

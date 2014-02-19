@@ -46,4 +46,5 @@ RSpec.configure do |config|
   end
 
   config.include LoginMacros
+  config.include RestMacros
 end

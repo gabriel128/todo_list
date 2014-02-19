@@ -8,6 +8,7 @@ ProjectGabriel::Application.routes.draw do
 
   resources :users
 
+  get "todo_list/get_all_task", to: 'todo_list#get_all_task'
   get "todo_list/add_task/:id", to: 'todo_list#add_task', as: 'add_task'
   get "todo_list/order_by/:property", to: 'todo_list#order_by', as: 'order_by'
 
@@ -17,7 +18,7 @@ ProjectGabriel::Application.routes.draw do
     delete 'logout', to: :destroy
   end
 
-  post 'todo_rest/authorize_user/.:format', to: 'todo_rest#authorize_user'
+  post 'session/authorize_user/.:format', to: 'session#authorize_user'
 
   #get "todo_list/index/:id" => 'todo_list#index'
   #get "todo_list/destroy"

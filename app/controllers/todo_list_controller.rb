@@ -5,6 +5,10 @@ class TodoListController < ApplicationController
     @tasks = @todo_list.tasks
   end
 
+  def get_all_task
+      render json: @todo_list.tasks.to_json, status: 200
+  end
+
   def add_task
     @todo_list.tasks << Task.find(params[:id])
     @todo_list.tasks.reload
@@ -32,6 +36,4 @@ class TodoListController < ApplicationController
     @user = User.find(session[:user_id])
     @user.todo_list = TodoList.create unless @user.todo_list
   end
-
-
 end

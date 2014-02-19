@@ -10,6 +10,7 @@ class TaskController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html { redirect_to add_task_url @task}
+        format.json{ render json: {id: @task.id}, status: 200 }
       else
         render_wrong_formats format
       end
@@ -23,6 +24,7 @@ class TaskController < ApplicationController
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to todo_list_url}
+        format.json { render json: @task, status: 200}
       else
         render_wrong_formats format
       end

@@ -49,7 +49,6 @@ describe TaskController do
   describe "#destroy" do
     let(:delete_request) { xhr :delete, :destroy, id: task }
     it { expect {delete_request}.to change(Task, :count).by(-1)}
-
     it { delete_request; response.should redirect_to todo_list_url }
   end
 
@@ -63,3 +62,4 @@ describe TaskController do
   end
 
 end
+
