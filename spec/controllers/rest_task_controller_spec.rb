@@ -11,14 +11,15 @@ describe TaskController do
 
   context 'when valid user' do
 
+    subject(:create_request) { post :create, json }
+    subject(:update_request) { patch :update, json_for_update }
     let(:json) { {format: 'json', task: {description: task.description, priority: 1, due_date: 1.day.from_now}} }
-    let(:create_request) { post :create, json }
-    let(:json_for_update) { {format: 'json', id: get_task_id, task: {description: task.description, priority: 3, due_date: 1.day.from_now}} }
-    let(:update_request) { patch :update, json_for_update }
+    let(:json_for_update) { {format: 'json', id: get_task_id,
+                             task: {description: task.description, priority: 3, due_date: 1.day.from_now}} }
 
     it { expect { create_request }.to change(Task, :count).by(1) }
-    it { create_request; JSON.parse(response.body)['id'].should_not eql nil }
-    it { create_request; expect { delete :destroy, {id: get_task_id} }.to change(Task, :count).by(-1) }
+    it { JSON.parse(create_request.body)['id'].should_not eql nil }
+    it { create_request and expect { delete :destroy, {id: get_task_id} }.to change(Task, :count).by(-1) }
 
     it '#update_done' do
       create_request
