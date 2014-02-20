@@ -1,28 +1,19 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Todo List made with rails and ajax calls.
 
-Things you may want to cover:
+These are the requirements:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+ - You can have my todo list displayed.
+ - You can manipulate your list (add/remove/modify entries).
+ - Assign priorities and due dates to the entries.
+ - You can sort my entry lists using due date and priority.
+ - You can mark an entry as completed.
+ - Minimal UI/UX design is needed.
+ - Every client operation done using JavaScript, reloading the page is
+    not an option.
+ - Write a RESTful API which will allow a third-party application to trigger actions on your app
+    (same actions available on the webpage).
+ - You need to be able to pass credentials to both the webpage and the API.
+ - As complementary to the last item, one should be able to create users in the system via an interface,
+    probably a signup/register screen.
